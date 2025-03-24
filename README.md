@@ -1,7 +1,17 @@
-# hector_slam
+# hector_slam_ros2
 
 See the ROS Wiki for documentation: http://wiki.ros.org/hector_slam
-
+## install
+```bash
+cd ~/ros2_ws/src
+git clone git@github.com:Nexis-R/hector_slam_ros2.git
+cd hector_slam_ros2
+sudo rosdep update
+rosdep install -r -y -i --from-paths .
+git submodule update --init
+cd ~/ros2_ws
+colcon build --symlink-install
+```
 ## for qrcode: 
 ```
 sudo apt install libzbar-dev
@@ -11,15 +21,17 @@ sudo apt install libzbar-dev
 ```
 ros2 launch world_info tag_detectors_launch.py
 ```
+## with slam_toolbox
+```bash
+ ros2 launch slam_toolbox online_async_launch.py 
 ```
-ros2 run hector_trajectory_server hector_trajectory_server
-```
-with hector slam
-```
+
+```bash
 ros2 run hector_geotiff geotiff_node
 ```
+
 one time saving with slam toolbox
-```
+```bash
 ros2 run hector_geotiff geotiff_saver
 ```
 
