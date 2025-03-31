@@ -1,6 +1,5 @@
 # hector_slam_ros2
 
-See the ROS Wiki for documentation: http://wiki.ros.org/hector_slam
 ## install
 ```bash
 cd ~/ros2_ws/src
@@ -13,12 +12,12 @@ cd ~/ros2_ws
 colcon build --symlink-install
 ```
 ## for qrcode: 
-```
+```bash
 sudo apt install libzbar-dev
 ```
 
 # Nodes and launch files
-```
+```bash
 ros2 launch world_info tag_detectors_launch.py
 ```
 ## with slam_toolbox
@@ -27,7 +26,7 @@ ros2 launch world_info tag_detectors_launch.py
 ```
 
 ```bash
-ros2 run hector_geotiff geotiff_node
+ros2 run hector_geotiff geotiff_node_slam_toolbox
 ```
 
 one time saving with slam toolbox
