@@ -347,7 +347,7 @@ using ServiceResponseFuture = rclcpp::Client<GetMedianDepthXYZ>::SharedFuture;
 
                         geometry_msgs::msg::TransformStamped tf_msg;
                         tf_msg.header.stamp = msg_img->header.stamp;
-                        tf_msg.header.frame_id = "camera_link";
+                        tf_msg.header.frame_id = "realsense_link";
 
                         // Set the transform message fields
                         tf_msg.child_frame_id = "victim";
@@ -362,7 +362,7 @@ using ServiceResponseFuture = rclcpp::Client<GetMedianDepthXYZ>::SharedFuture;
                         world_info_msgs::msg::WorldInfo world_info_msg;
 
                         world_info_msg.header.stamp = msg_img->header.stamp;
-                        world_info_msg.header.frame_id = "camera_link";
+                        world_info_msg.header.frame_id = "realsense_link";
                         world_info_msg.num = "victim";
                         world_info_msg.pose.position.x = tf_msg.transform.translation.x;
                         world_info_msg.pose.position.y = tf_msg.transform.translation.y;

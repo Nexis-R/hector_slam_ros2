@@ -34,7 +34,7 @@ class RSDepth : public rclcpp::Node
       // sub_cam(image_transport::create_camera_subscription(this, "image_rect",
       //   std::bind(&RSDepth::onCamera, this, std::placeholders::_1, std::placeholders::_2),
       //   declare_parameter("image_transport", "raw", descr({}, true)), rmw_qos_profile_sensor_data)),
-      sub_cam(image_transport::create_subscription(this, "/camera/camera/depth/image_rect_raw",
+      sub_cam(image_transport::create_subscription(this, "image_rect",
         std::bind(&RSDepth::onCamera, this, std::placeholders::_1),
         declare_parameter("image_transport", "raw", descr({}, true)), rmw_qos_profile_sensor_data))
     {
@@ -93,10 +93,10 @@ class RSDepth : public rclcpp::Node
       float median_depth = findMedian(depth_values);
 
       // Intrinsic parameters of the depth camera
-      float fx = 212.1688885346757;
-      float fy = 212.1688885346757;
-      float cx = 212;
-      float cy = 120;
+      float fx = 427.3484191894531;    // 水平方向の焦点距離（kマトリックスの[0,0]）
+      float fy = 427.3484191894531;    // 垂直方向の焦点距離（kマトリックスの[1,1]）
+      float cx = 426.5095520019531;    // 主点のx座標（kマトリックスの[0,2]）
+      float cy = 242.78115844726562;   // 主点のy座標（kマトリックスの[1,2]）
       
       // Get a depth frame and a pixel coordinate
       float pixel_x = std::accumulate(request->x.begin(), request->x.end(), 0.0f) / request->x.size();

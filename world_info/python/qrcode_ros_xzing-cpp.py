@@ -76,7 +76,7 @@ class QrCode(Node):
         super().__init__('qrcode_node')
         
         self.bridge = CvBridge()
-        self.create_subscription(Image,"/camera/camera/color/image_raw", self.spot_kinect, 10)
+        self.create_subscription(Image,"/realsense/camera/color/image_raw", self.spot_kinect, 10)
         self.world_info_pub = self.create_publisher(WorldInfo,"/world_info_sub", 1)
         self.world_info_msg = WorldInfo()
 

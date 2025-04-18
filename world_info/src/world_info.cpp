@@ -1,4 +1,3 @@
-
 #include "rclcpp/rclcpp.hpp"
 
 #include "world_info_msgs/msg/world_info.hpp"
@@ -96,7 +95,7 @@ bool within_one_meter_range(const geometry_msgs::msg::Pose mean, const geometry_
 void receive_info(const world_info_msgs::msg::WorldInfo::SharedPtr msg)
 {
   info = *msg;
-  if (info.header.frame_id == "camera_link") info.header.frame_id = "camera_link"; // for webots
+  if (info.header.frame_id == "realsense_link") info.header.frame_id = "realsense_link"; // for webots
 
   auto t = std::time(nullptr);
   auto tm = *std::localtime(&t);
