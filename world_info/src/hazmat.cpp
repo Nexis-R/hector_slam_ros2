@@ -257,7 +257,7 @@ using ServiceResponseFuture = rclcpp::Client<GetMedianDepthXYZ>::SharedFuture;
 
                         geometry_msgs::msg::TransformStamped tf_msg;
                         tf_msg.header.stamp = msg_img->header.stamp;
-                        tf_msg.header.frame_id = "kinect";
+                        tf_msg.header.frame_id = "camera_link";
 
                         // Set the transform message fields
                         tf_msg.child_frame_id = class_names[classId];

@@ -1,4 +1,10 @@
 # hector_slam_ros2
+Hector SlamのROS2バージョン<br>
+現在はGeotiffマップを作成するために使用する。
+
+## 環境
+- Ubuntu22.04
+- ROS2 Humble
 
 ## install
 ```bash
@@ -16,31 +22,12 @@ colcon build --symlink-install
 sudo apt install libzbar-dev
 ```
 
-# Nodes and launch files
-```bash
-ros2 launch world_info tag_detectors_launch.py
-```
-## with slam_toolbox
-```bash
- ros2 launch slam_toolbox online_async_launch.py 
-```
-
-```bash
-ros2 run hector_geotiff geotiff_node_slam_toolbox
-```
-
-one time saving with slam toolbox
-```bash
-ros2 run hector_geotiff geotiff_saver
-```
-
 # Yolov5 object detection with openvino with GPU
-why? https://learnopencv.com/running-openvino-models-on-intel-integrated-gpu
-## Instructions
-### To get intel integrated GPU to work
-Follow https://dgpu-docs.intel.com/installation-guides/ubuntu/ubuntu-jammy-arc.html
-### Install openvino 
-```
+why? <br>
+https://learnopencv.com/running-openvino-models-on-intel-integrated-gpu<br>
+world_infoのパッケージ内ではHazmatLabelの認識にopenvinoを使用する必要があります。インストール方法については下記を参考にしてインストールしてください。
+## Install openvino 
+```bash
 cd
 wget https://storage.openvinotoolkit.org/repositories/openvino/packages/2022.3/linux/l_openvino_toolkit_ubuntu20_2022.3.0.9052.9752fafe8eb_x86_64.tgz
 tar -xvzf l_openvino_toolkit_ubuntu20_2022.3.0.9052.9752fafe8eb_x86_64.tgz
@@ -50,4 +37,20 @@ mv l_openvino_toolkit_ubuntu20_2022.3.0.9052.9752fafe8eb_x86_64 openvino2022.3
 echo '
 #OpenVINO
 . ~/openvino2022.3/setupvars.sh > /dev/null' >> ~/.bashrc
+```
+
+# Demo
+## Geotiffマップの作り方 (for RobocupRescue)
+### slam_toolboxの起動
+```bash
+ros2 launch slam_toolbox online_async_launch.py 
+```
+### tag_detectors_launchの起動
+QRコード・Hazmatラベル・ArucoMarker・AprilTag、Babyfaceを認識するノードを起動する為のLaunchファイルです。<br>
+```bash
+ros2 launch world_info tag_detectors_launch.py
+```
+#### Geotiffを任意のタイミングで保存したい時
+```bash
+ros2 run hector_geotiff geotiff_saver
 ```

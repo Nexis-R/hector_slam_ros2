@@ -34,7 +34,7 @@ class RSDepth : public rclcpp::Node
       // sub_cam(image_transport::create_camera_subscription(this, "image_rect",
       //   std::bind(&RSDepth::onCamera, this, std::placeholders::_1, std::placeholders::_2),
       //   declare_parameter("image_transport", "raw", descr({}, true)), rmw_qos_profile_sensor_data)),
-      sub_cam(image_transport::create_subscription(this, "/Spot/kinect_range",
+      sub_cam(image_transport::create_subscription(this, "/camera/camera/depth/image_rect_raw",
         std::bind(&RSDepth::onCamera, this, std::placeholders::_1),
         declare_parameter("image_transport", "raw", descr({}, true)), rmw_qos_profile_sensor_data))
     {

@@ -23,32 +23,24 @@ def generate_launch_description():
                     package='world_info',
                     plugin='world_info::DetectQR',
                     name='qr_node',
-                    parameters=[{'qr_square_length': 0.85*0.3}],
-                    remappings=[('/image_rect', '/fisheye_front_camera/image_raw')],
+                    parameters=[{'qr_square_length': 0.04}],
+                    remappings=[('/image_rect', '/camera/camera/color/image_raw')],
                 ),
                 # ComposableNode(
                 #     package='world_info',
-                #     plugin='world_info::DetectHazmat',
+                #     plugin='world_info::DetectHazmatSeg',
                 #     name='hazmat_node',
                 #     parameters=[{'hazmat_confidence_threshold': 0.9},
-                #                 {'inference_mode': "GPU"}],
-                #     remappings=[('/image_rect', '/color/image_raw')],
+                #                 {'inference_mode': "CPU"}],
+                #     remappings=[('/image_rect', '/camera/camera/color/image_raw')],
                 # ),
                 # ComposableNode(
                 #     package='world_info',
                 #     plugin='world_info::DetectBabyface',
                 #     name='babyface_node',
                 #     parameters=[{'babyface_confidence_threshold': 0.9},
-                #                 {'inference_mode': "GPU"}],
-                #     remappings=[('/image_rect', '/color/image_raw')],
-                # ),
-                # Images from webots aren't synchronised, work with this later if required*. for other tags temporary hax
-                # ComposableNode(
-                #     package='apriltag_ros',
-                #     plugin='AprilTagNode',
-                #     name='apriltag_node',
-                #     remappings=[('/image_rect', '/Spot/kinect_color'),
-                #                 ('/camera_info', '/Spot/kinect_color/camera_info')],
+                #                 {'inference_mode': "CPU"}],
+                #     remappings=[('/image_rect', '/camera/camera/color/image_raw')],
                 # ),
             ],
             output='both',
@@ -57,6 +49,12 @@ def generate_launch_description():
     world_info_node = Node(
         package='world_info',
         executable='world_info',
+        output='both',
+    )
+
+    geotiff_node_slam_toolbox = Node(
+        package='hector_geotiff',
+        executable='geotiff_node_slam_toolbox',
         output='both',
     )
 

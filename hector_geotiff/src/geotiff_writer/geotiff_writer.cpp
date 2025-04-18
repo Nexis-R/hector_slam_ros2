@@ -491,7 +491,7 @@ void GeotiffWriter::drawObjectOfInterest( const Eigen::Vector2f &coords, const s
   }
 
 
-  qPainter.setPen( Qt::white );
+  qPainter.setPen( Qt::black );
   qPainter.scale( -1.0, 1.0 );
 
   qPainter.drawText( shape_rect, Qt::AlignCenter, tmp );

@@ -21,7 +21,7 @@ class AprilTag(Node):
         self.tfb_ = TransformBroadcaster(self)
         self.ros_clock = Clock()
         self.bridge = CvBridge()
-        self.create_subscription(Image,"/Spot/kinect_color", self.spot_kinect, 1)
+        self.create_subscription(Image,"/camera/camera/color/image_raw", self.spot_kinect, 1)
         self.world_info_pub = self.create_publisher(WorldInfo,"/world_info_sub", 1)
         self.world_info_msg = WorldInfo()
 

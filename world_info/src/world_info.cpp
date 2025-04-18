@@ -96,7 +96,7 @@ bool within_one_meter_range(const geometry_msgs::msg::Pose mean, const geometry_
 void receive_info(const world_info_msgs::msg::WorldInfo::SharedPtr msg)
 {
   info = *msg;
-  if (info.header.frame_id == "kinect_color") info.header.frame_id = "kinect"; // for webots
+  if (info.header.frame_id == "camera_link") info.header.frame_id = "camera_link"; // for webots
 
   auto t = std::time(nullptr);
   auto tm = *std::localtime(&t);
@@ -130,7 +130,7 @@ void receive_info(const world_info_msgs::msg::WorldInfo::SharedPtr msg)
     }
     
     if (apriltag_dict.find(info.num) == apriltag_dict.end())
-      apriltag_dict[info.num] = PoseCount{info, 1, id_count++, time_str, std::string("Spot"), std::string("T")}; // First time
+      apriltag_dict[info.num] = PoseCount{info, 1, id_count++, time_str, std::string("seek"), std::string("T")}; // First time
     else
       add_to_mean(apriltag_dict[info.num].info.pose, info.pose, apriltag_dict[info.num].count);
   }
@@ -160,7 +160,7 @@ void receive_info(const world_info_msgs::msg::WorldInfo::SharedPtr msg)
     }
     
     if (qr_dict.find(info.num) == qr_dict.end())
-      qr_dict[info.num] = PoseCount{info, 1, id_count++, time_str, std::string("Spot"), std::string("T")}; // First time
+      qr_dict[info.num] = PoseCount{info, 1, id_count++, time_str, std::string("Seek"), std::string("T")}; // First time
     else
       add_to_mean(qr_dict[info.num].info.pose, info.pose, qr_dict[info.num].count);
   }
@@ -199,7 +199,7 @@ void receive_info(const world_info_msgs::msg::WorldInfo::SharedPtr msg)
     }
     if (!hazmat_found) {
       PoseCount single_hazmat_dict;
-      single_hazmat_dict = PoseCount{info, 1, id_count++, time_str, std::string("Spot"), std::string("T")}; // First time
+      single_hazmat_dict = PoseCount{info, 1, id_count++, time_str, std::string("Seek"), std::string("T")}; // First time
 
       multiple_hazmat[info.num].push_back(single_hazmat_dict);
     }
@@ -230,7 +230,7 @@ void receive_info(const world_info_msgs::msg::WorldInfo::SharedPtr msg)
     }
     
     if (victim_dict.find(info.num) == victim_dict.end())
-      victim_dict[info.num] = PoseCount{info, 1, id_count++, time_str, std::string("Spot"), std::string("T")}; // First time
+      victim_dict[info.num] = PoseCount{info, 1, id_count++, time_str, std::string("Seek"), std::string("T")}; // First time
     else
       add_to_mean(victim_dict[info.num].info.pose, info.pose, victim_dict[info.num].count);
   }

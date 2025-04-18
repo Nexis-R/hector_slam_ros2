@@ -123,7 +123,7 @@ class DetectAruco : public rclcpp::Node
 
         geometry_msgs::msg::TransformStamped tf_msg;
         tf_msg.header.stamp = msg_img->header.stamp;
-        tf_msg.header.frame_id = "kinect";
+        tf_msg.header.frame_id = "camera_link";
 
         // Set the transform message fields
         tf_msg.child_frame_id = "aruco_" + std::to_string(ids[i]);
@@ -137,6 +137,7 @@ class DetectAruco : public rclcpp::Node
 
         world_info_msg.header.stamp = msg_img->header.stamp;
         world_info_msg.num = std::to_string(ids[i]);
+        world_info_msg.header.frame_id = "camera_link";
         world_info_msg.type = "aruco";
         world_info_msg.pose.position.x = tf_msg.transform.translation.x;
         world_info_msg.pose.position.y = tf_msg.transform.translation.y;

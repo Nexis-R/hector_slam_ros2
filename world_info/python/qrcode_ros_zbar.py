@@ -80,7 +80,7 @@ class QrCode(Node):
         self.tfb_ = TransformBroadcaster(self)
         
         self.bridge = CvBridge()
-        self.create_subscription(Image,"/Spot/kinect_color", self.spot_kinect, 10)
+        self.create_subscription(Image,"/camera/camera/color/image_raw", self.spot_kinect, 10)
         self.world_info_pub = self.create_publisher(WorldInfo,"/world_info_sub", 1)
         self.world_info_msg = WorldInfo()
 
@@ -99,7 +99,7 @@ class QrCode(Node):
         all_text,all_corners,all_pose_t,all_pose_R = get_qr_pose(kinect_img, squareLength, K, D)
         if all_text is None:
             # show the output image
-            cv2.imshow("kinect", kinect_img)
+            cv2.imshow("camera_link", kinect_img)
             cv2.waitKey(1)
             return
 
@@ -108,7 +108,7 @@ class QrCode(Node):
 
             tfs.header.stamp = self.get_clock().now().to_msg()
 
-            tfs._header.frame_id = "kinect"
+            tfs._header.frame_id = "camera_link"
             tfs._child_frame_id = text
             tfs.transform.translation.x = float(pose_t[2])
             tfs.transform.translation.y = float(pose_t[0])
@@ -139,7 +139,7 @@ class QrCode(Node):
             cv2.circle(kinect_img, (cX, cY), 5, (0, 0, 255), -1)
 
         # show the output image
-        cv2.imshow("kinect", kinect_img)
+        cv2.imshow("camera_link", kinect_img)
         cv2.waitKey(1)
         
 

@@ -238,7 +238,7 @@ public:
     std::string date_str = oss_date.str();
 
     myfile.open(date_str + "/" + p_map_file_base_name_ + "_" + p_mission_name_ + "_pois_" + time_str + ".csv");
-    myfile << "\"pois\"" << "\n" << "\"1.2\"" << "\n" << "\"ALeRT\"" << "\n" << "\"Germany\"" << "\n";
+    myfile << "\"pois\"" << "\n" << "\"1.2\"" << "\n" << "\"NexisR\"" << "\n" << "\"Japan\"" << "\n";
 
     myfile << wi_array.start_time;
 
