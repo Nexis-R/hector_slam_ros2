@@ -9,7 +9,7 @@ Hector SlamのROS2バージョン<br>
 ## install
 ```bash
 cd ~/ros2_ws/src
-git clone git@github.com:Nexis-R/hector_slam_ros2.git
+git clone git@github.com:NuTech-R/hector_slam_ros2.git
 cd hector_slam_ros2
 sudo rosdep update
 rosdep install -r -y -i --from-paths .
